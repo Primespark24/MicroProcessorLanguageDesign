@@ -59,21 +59,71 @@ Each subgroup should decide on the specific application area they want to focus 
 
 ## Section 1: Compare and Contrast all the Processor Designs Your Group Researched
 
+The first processor researched was the Intel 8080. We decided it would be good to start by looking at something that is a bit more simple than modern designs. 
+The reason we did this is because our processor will likely not have as many operations/requirements as modern architectures.
+
+
 1. What was the application area of each processor researched? 
    
+    The Intel 8080 is an extended/enhanced version of the Intel 8008 microprocessor. 
+    The 8008's original purpose was to operate computer terminals, calculators, 1970s industrial robots, simple computers, etc.
+
+   
 2. What "registers" did the chosen processors use? Make a table similar to Table 6.1 MIPS Register Set on page 300 of your book for each processor (you can summarize this table if it's too long)
+
+    NAME | NUMBER | USE
+    ---  | ------ | ---
+     A   |   7    | 8-bit accumulator
+     B   |   0    | 8-bit general purpose
+     C   |   1    | 8-bit general purpose
+     D   |   2    | 8-bit general purpose
+     E   |   3    | 8-bit general purpose
+     H   |   4    | 8-bit general purpose
+     L   |   5    | 8-bit general purpose
+     M   |   6    | Psuedo-register, can refer to memory address in HL 
+     PC  |   X    | Program counter
+     BC  | 0 | Combination of 2 registers to form 16bit register 
+     DE  | 1 | Combination of 2 registers to form 16bit register 
+     HL  | 2 | Combination of 2 registers to form 16bit register 
+     SP  | 3 | Stack pointer
+    https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf
+
    
 3. Find as information on *four different types of instructions* for each processor. If possible, find the machine code format, this may not be possible for some of the processors that were chosen, but do your best to find the lowest level instruction information possible for your processor.
+
+
+    For the 8080 processor, the instructions are only 8 bits.
+
+    Example: Instruction = |OPCODE, 2 bits||Dest reg, 3 bits||Source register, 3 bits|
+        "mov a, b" will copy register B to register A, and its machine code is 01111000. Bits(0-2) are 0, which is the value of B, Bits(3-5) are 7, which is the value of A. Bits(6-7) are 01, which is the code for mov
+        "ora, c" will do abitwise OR of A and C into reg A, and its machine code is 10110001. Bits(0-2) are 1, which is the value of C, Bits(3-7) is the code required to call 'ora'.
+        "inx, d" will increment the combined register DE, and its machine code is 00010011. Bits(0-2) are 3, which is the value of E, Bits(3-5) are 2, which is the value of D. Bits(6-7) are 00, which helps determine if the instruction is inx
+        "dcx, b" will decrement the combined register BC, and its machine code is 00001011. Bits(0-2) are 3 which is the value of E, Bits(3-5) are 1 which is the value of C. Bits(6-7) are 00, which helps determine if the instruction is dcx
+
 
 4. Find a high level block diagram of each of your processors. Include these diagrams in this document. Compare and contrast the high level designs for *two* of the processors your group researched.  Here are questions that can help guide you in the comparison process. You may not be able to answer all the questions, but do your best for each of the two processors:
 
     a. Find a high level architecture diagram showing the data path for two of the processors. Insert both diagrams here:
+    ![Alt text](/IMG/1920px-Intel_8080_arch.svg.png?raw=true "Title")
 
     b.	What are the different types of memory (register, cache, etc.) that each of these processors has built into the processor (our mips processor had 32 registers)? 
 
-    c.	How do(es) the ALU(s) connect to the registers for each processor (refer to the diagrams in part a)? 
+        For the 8080 processor, there is a program memory, a data memory, and a stack memory. 
+        The program memory is used to store instructions and is read to the microprocessor sequentially. 
+        The data memory are all 16-bit so that data can be placed anywhere.
+        The stack memory is limited only by the amount of available memory (The stack grows downward as needed).
+
+        There is also a register array that holds the memory for each register, the program counter, and stack pointer.
+        https://www.elprocus.com/know-about-architecture-of-the-intel-8080-microprocessor/
+        http://mielecki.ristel.pl/files/i8080-architecture.pdf 
+
+    c.	How does the ALU(s) connect to the registers for each processor (refer to the diagrams in part a)? 
+
+        For the Intel 8080, there is a 8-bit internal data bus that connects the register array to the ALU. Data from registers must go through a 'temporary register' first before going into the ALU.
 
     d.	How are instructions fetched and executed for each processor? Is there an instruction cache? 
+
+        
 
     e.	Do the processors pipeline instructions? 
 
