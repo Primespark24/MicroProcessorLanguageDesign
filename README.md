@@ -67,7 +67,8 @@ The reason we did this is because our processor will likely not have as many ope
    
         The Intel 8080 is an extended/enhanced version of the Intel 8008 microprocessor. 
         The 8008's original purpose was to operate computer terminals, calculators, 1970s industrial robots, simple computers, etc.
-
+        The MOS 6502 was designed to be a simplified, cheaper and faster MOS 6800. 
+        It was used in video game consoles (eg atari 2600) and computers as well.
    
 2. What "registers" did the chosen processors use? Make a table similar to Table 6.1 MIPS Register Set on page 300 of your book for each processor (you can summarize this table if it's too long)
 
