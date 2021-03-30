@@ -65,36 +65,35 @@ The reason we did this is because our processor will likely not have as many ope
 
 1. What was the application area of each processor researched? 
    
-    The Intel 8080 is an extended/enhanced version of the Intel 8008 microprocessor. 
-    The 8008's original purpose was to operate computer terminals, calculators, 1970s industrial robots, simple computers, etc.
+        The Intel 8080 is an extended/enhanced version of the Intel 8008 microprocessor. 
+        The 8008's original purpose was to operate computer terminals, calculators, 1970s industrial robots, simple computers, etc.
 
    
 2. What "registers" did the chosen processors use? Make a table similar to Table 6.1 MIPS Register Set on page 300 of your book for each processor (you can summarize this table if it's too long)
 
-    NAME | NUMBER | USE
-    ---  | ------ | ---
-     A   |   7    | 8-bit accumulator
-     B   |   0    | 8-bit general purpose
-     C   |   1    | 8-bit general purpose
-     D   |   2    | 8-bit general purpose
-     E   |   3    | 8-bit general purpose
-     H   |   4    | 8-bit general purpose
-     L   |   5    | 8-bit general purpose
-     M   |   6    | Psuedo-register, can refer to memory address in HL 
-     PC  |   X    | Program counter
-     BC  | 0 | Combination of 2 registers to form 16bit register 
-     DE  | 1 | Combination of 2 registers to form 16bit register 
-     HL  | 2 | Combination of 2 registers to form 16bit register 
-     SP  | 3 | Stack pointer
-    https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf
+        NAME | NUMBER | USE
+        ---  | ------ | ---
+         A   |   7    | 8-bit accumulator
+         B   |   0    | 8-bit general purpose
+         C   |   1    | 8-bit general purpose
+         D   |   2    | 8-bit general purpose
+         E   |   3    | 8-bit general purpose
+         H   |   4    | 8-bit general purpose
+         L   |   5    | 8-bit general purpose
+         M   |   6    | Psuedo-register, can refer to memory address in HL 
+         PC  |   X    | Program counter
+         BC  | 0 | Combination of 2 registers to form 16bit register 
+         DE  | 1 | Combination of 2 registers to form 16bit register 
+         HL  | 2 | Combination of 2 registers to form 16bit register 
+         SP  | 3 | Stack pointer
+
+        https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf
 
    
 3. Find as information on *four different types of instructions* for each processor. If possible, find the machine code format, this may not be possible for some of the processors that were chosen, but do your best to find the lowest level instruction information possible for your processor.
 
-
-    For the 8080 processor, the instructions are only 8 bits.
-
-    Example: Instruction = |OPCODE, 2 bits||Dest reg, 3 bits||Source register, 3 bits|
+        For the 8080 processor, the instructions are only 8 bits.
+        Example: Instruction = |OPCODE, 2 bits||Dest reg, 3 bits||Source register, 3 bits|
         "mov a, b" will copy register B to register A, and its machine code is 01111000. Bits(0-2) are 0, which is the value of B, Bits(3-5) are 7, which is the value of A. Bits(6-7) are 01, which is the code for mov
         "ora, c" will do abitwise OR of A and C into reg A, and its machine code is 10110001. Bits(0-2) are 1, which is the value of C, Bits(3-7) is the code required to call 'ora'.
         "inx, d" will increment the combined register DE, and its machine code is 00010011. Bits(0-2) are 3, which is the value of E, Bits(3-5) are 2, which is the value of D. Bits(6-7) are 00, which helps determine if the instruction is inx
@@ -123,11 +122,16 @@ The reason we did this is because our processor will likely not have as many ope
 
     d.	How are instructions fetched and executed for each processor? Is there an instruction cache? 
 
-        
+        For the 8080, when an assembly file is created, the first line must be the first address of program memory that the code is at. This line usually looks like 'org 1000h' -This tells the program counter to go that memory address.After this is done, the first instruction is loaded into an instruction register, from there, it goes to a instruction decoder which will help determine timing and control bits that come out of a 'timing and control' module. From there, the timing/control bits will execute the instruction appropriately and also increment the program counter.Then, on the next cycle, the program counter will be used to fetch the next instruction.
 
     e.	Do the processors pipeline instructions? 
 
+        The Intel 8080 is nonpipelined.
+        http://www.ee.hacettepe.edu.tr/~alkar/ELE336/w2-hacettepe[2016].pdf
+
     f.	What clock speeds do the processors run at? 
+
+        The intel 8080 runs at clock speed between 2 MHz to 3.125 MHz.
 
 ## Section 2: Processor Language Design
 
