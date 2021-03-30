@@ -99,6 +99,7 @@ The reason we did this is because our processor will likely not have as many ope
          P   |   7    | 1-bit processer status flag, 7 of them
          S   |   n/a  | 8-bit stack pointer 
          PC  |   X    | 16-bit Program counter
+         https://en.wikipedia.org/wiki/MOS_Technology_6502
    
 3. Find as information on *four different types of instructions* for each processor. If possible, find the machine code format, this may not be possible for some of the processors that were chosen, but do your best to find the lowest level instruction information possible for your processor.
 
@@ -108,6 +109,11 @@ The reason we did this is because our processor will likely not have as many ope
         "ora, c" will do abitwise OR of A and C into reg A, and its machine code is 10110001. Bits(0-2) are 1, which is the value of C, Bits(3-7) is the code required to call 'ora'.
         "inx, d" will increment the combined register DE, and its machine code is 00010011. Bits(0-2) are 3, which is the value of E, Bits(3-5) are 2, which is the value of D. Bits(6-7) are 00, which helps determine if the instruction is inx
         "dcx, b" will decrement the combined register BC, and its machine code is 00001011. Bits(0-2) are 3 which is the value of E, Bits(3-5) are 1 which is the value of C. Bits(6-7) are 00, which helps determine if the instruction is dcx
+
+        For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
+        ORA deos a bitwise or with the bits on the accumulator and another value
+        this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address,
+        011 for an absolute address etc.
 
 
 4. Find a high level block diagram of each of your processors. Include these diagrams in this document. Compare and contrast the high level designs for *two* of the processors your group researched.  Here are questions that can help guide you in the comparison process. You may not be able to answer all the questions, but do your best for each of the two processors:
@@ -153,9 +159,33 @@ The reason we did this is because our processor will likely not have as many ope
    
    >>### TABLE 2A:  
    >>A diagram of the registers (and their purposes) for your custom processor  
+   All Registers are 32 bits: When we use floating point we will use Vivado's 32 bit single precision format
+   All registers will be storing
+    - $0 register (constant reg)
+    - $f0 (floating point 0)
+    - Program counter (keeps track of current position in program)
+    - temporaries (8 registers)
+    - saved values (8 saved)
+    - stack pointer (pointer to the bottom of the stack)
+    - return address (stores the address of the last executed instruction)
+
 
    >>### TABLE 2B:
    >>A list of the instructions that you are going to build for your the processor.  
+    Math Instructions
+    - Add
+    - Sub
+    - Mul
+    - Div
+    - Addi
+    - Mod
+    - 
+    Basic Instruction
+    - Jump
+    - And 
+    - Or
+    - beq
+    - bne 
 
 ### Important Tips
 * Don’t start with too many instructions! Start with the basics (about 8 instructions) 
@@ -167,6 +197,16 @@ The reason we did this is because our processor will likely not have as many ope
 
 ## Section 3: Assembler for your Processor
 Create an assembler for your processor. Push the assembler code to witgit as a sub-folder of this group project repository.
+
+- Read line by line
+- Have special characters: $ in front of every register
+- Dictionary of hex codes for each instruction
+- Additional dictionary for the registers that is used to translate the registers into hex
+- Have different types for different instructions (R-type, I-type, J-type)
+
+
+
+
 
 ### Keep It Simple
 You may write this in any language you wish. I highly recommend python. 
