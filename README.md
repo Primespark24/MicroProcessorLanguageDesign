@@ -68,15 +68,15 @@ The reason we did this is because our processor will likely not have as many ope
         The Intel 8080 is an extended/enhanced version of the Intel 8008 microprocessor. 
         The 8008's original purpose was to operate computer terminals, calculators, 1970s industrial robots, simple computers, etc.
         The MOS 6502 was designed to be a simplified, cheaper and faster MOS 6800. 
-        It was used in video game consoles (eg atari 2600) and computers as well.
+        It was 8-bit, and used in video game consoles (eg atari 2600) and computers as well.
    
 2. What "registers" did the chosen processors use? Make a table similar to Table 6.1 MIPS Register Set on page 300 of your book for each processor (you can summarize this table if it's too long)
-
+    intel 8080:
         NAME | NUMBER | USE
         ---  | ------ | ---
          A   |   7    | 8-bit accumulator
-         B   |   0    | 8-bit general purpose
-         C   |   1    | 8-bit general purpose
+         B   |   0    | 8-bit index mb pls fix this
+         C   |   0    | 8-bit index mb also
          D   |   2    | 8-bit general purpose
          E   |   3    | 8-bit general purpose
          H   |   4    | 8-bit general purpose
@@ -90,6 +90,15 @@ The reason we did this is because our processor will likely not have as many ope
 
         https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf
 
+    mos 6502:
+        NAME | NUMBER | USE
+        ---  | ------ | ---
+         A   |   n/a  | 8-bit accumulator
+         X   |   n/a  | 8-bit index register
+         Y   |   n/a  | 8-bit index register
+         P   |   7    | 1-bit processer status flag, 7 of them
+         S   |   n/a  | 8-bit stack pointer 
+         PC  |   X    | 16-bit Program counter
    
 3. Find as information on *four different types of instructions* for each processor. If possible, find the machine code format, this may not be possible for some of the processors that were chosen, but do your best to find the lowest level instruction information possible for your processor.
 
