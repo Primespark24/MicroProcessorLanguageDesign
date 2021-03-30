@@ -82,10 +82,10 @@ The reason we did this is because our processor will likely not have as many ope
          L   |   5    | 8-bit general purpose
          M   |   6    | Psuedo-register, can refer to memory address in HL 
          PC  |   X    | Program counter
-         BC  | 0 | Combination of 2 registers to form 16bit register 
-         DE  | 1 | Combination of 2 registers to form 16bit register 
-         HL  | 2 | Combination of 2 registers to form 16bit register 
-         SP  | 3 | Stack pointer
+         BC  |   0    | Combination of 2 registers to form 16bit register 
+         DE  |   1    | Combination of 2 registers to form 16bit register 
+         HL  |   2    | Combination of 2 registers to form 16bit register 
+         SP  |   3    | Stack pointer
 
         https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf
 
