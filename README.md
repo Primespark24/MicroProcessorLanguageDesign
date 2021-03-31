@@ -177,22 +177,32 @@ The reason we did this is because our processor will likely not have as many ope
 
 
    >>### TABLE 2B:
+    Machine Code Instruction Format: 64 bits: 
+    I/F-Type: |2 Bit instruction type| 5 bits op | 20 Extra | 5 RD | 32 Immediate/Float|
+    R-Type:   |2 Bit instruction type| 5 bits op| 27 bit extra| 5 RT | 5 RD | 5 RS |
+    J-Type:   |2 Bit instruction type| 5 bits op|  25 Extra |Offset from current line 32 bits| 
+
    >>A list of the instructions that you are going to build for your the processor.  
-    Math Instructions
-        I-Type: 
-    - Addf (also immediate, but the immediate value is a float)
-        R-Type:
-    - Addr (add two registers)
+
+    Math Instructions (we are only implementing arithmetic operator for floating )
+    I-Type: 
+    - Addif (also immediate, but the immediate value is a float
+    - R-Type:
+    - Addf (add two registers)
     - Sub
     - Mul
     - Div
     - Mod
     - 
+
     Basic Instruction
-        R-Type: 
+    R-Type: 
     - And 
     - Or
-        I-Type:
+    - lw
+    - sw
+
+    I-Type:
     - beq
     - bne 
     - Jump
