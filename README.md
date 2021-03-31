@@ -161,7 +161,7 @@ The reason we did this is because our processor will likely not have as many ope
    >>A diagram of the registers (and their purposes) for your custom processor  
    All Registers are 32 bits: When we use floating point we will use Vivado's 32 bit single precision format
    All registers will be storing
-    - $0 register (constant reg)
+    - (Maybe Remove) $0 register (constant reg)
     - $f0 (floating point 0)
     - Program counter (keeps track of current position in program)
     - temporaries (8 registers)
@@ -173,19 +173,23 @@ The reason we did this is because our processor will likely not have as many ope
    >>### TABLE 2B:
    >>A list of the instructions that you are going to build for your the processor.  
     Math Instructions
-    - Add
+        I-Type: 
+    - Addf (also immediate, but the immediate value is a float)
+        R-Type:
+    - Addr (add two registers)
     - Sub
     - Mul
     - Div
-    - Addi
     - Mod
     - 
     Basic Instruction
-    - Jump
+        R-Type: 
     - And 
     - Or
+        I-Type:
     - beq
     - bne 
+    - Jump
 
 ### Important Tips
 * Don’t start with too many instructions! Start with the basics (about 8 instructions) 
