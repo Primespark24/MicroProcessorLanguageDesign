@@ -70,8 +70,12 @@ The reason we did this is because our processor will likely not have as many ope
         The MOS 6502 was designed to be a simplified, cheaper and faster MOS 6800. 
         It was 8-bit, and used in video game consoles (eg atari 2600) and computers as well.
    
-2. What "registers" did the chosen processors use? Make a table similar to Table 6.1 MIPS Register Set on page 300 of your book for each processor (you can summarize this table if it's too long)
+2. What "registers" did the chosen processors use? 
+
+    Make a table similar to Table 6.1 MIPS Register Set on page 300 of your book for each processor (you can summarize this table if it's too long)
+
     intel 8080:
+
         NAME | NUMBER | USE
         ---  | ------ | ---
          A   |   7    | 8-bit accumulator
@@ -91,6 +95,7 @@ The reason we did this is because our processor will likely not have as many ope
         https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf
 
     mos 6502:
+
         NAME | NUMBER | USE
         ---  | ------ | ---
          A   |   n/a  | 8-bit accumulator
@@ -109,6 +114,7 @@ The reason we did this is because our processor will likely not have as many ope
         "ora, c" will do abitwise OR of A and C into reg A, and its machine code is 10110001. Bits(0-2) are 1, which is the value of C, Bits(3-7) is the code required to call 'ora'.
         "inx, d" will increment the combined register DE, and its machine code is 00010011. Bits(0-2) are 3, which is the value of E, Bits(3-5) are 2, which is the value of D. Bits(6-7) are 00, which helps determine if the instruction is inx
         "dcx, b" will decrement the combined register BC, and its machine code is 00001011. Bits(0-2) are 3 which is the value of E, Bits(3-5) are 1 which is the value of C. Bits(6-7) are 00, which helps determine if the instruction is dcx
+
 
         For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
         ORA deos a bitwise or with the bits on the accumulator and another value
