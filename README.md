@@ -127,6 +127,8 @@ The reason we did this is because our processor will likely not have as many ope
     a. Find a high level architecture diagram showing the data path for two of the processors. Insert both diagrams here:
     ![Alt text](/IMG/1920px-Intel_8080_arch.svg.png?raw=true "Title")
 
+    ![Alt text](/IMG/MOS_6592.png?raw=true "Title")
+
     b.	What are the different types of memory (register, cache, etc.) that each of these processors has built into the processor (our mips processor had 32 registers)? 
 
         For the 8080 processor, there is a program memory, a data memory, and a stack memory. 
@@ -138,22 +140,36 @@ The reason we did this is because our processor will likely not have as many ope
         https://www.elprocus.com/know-about-architecture-of-the-intel-8080-microprocessor/
         http://mielecki.ristel.pl/files/i8080-architecture.pdf 
 
+
+        For the MOS 6502 processor, there is a data memory, a stack, and a vector table. 
+        The data memory are all 16-bit so that data can be placed anywhere.
+        The stack memory is limited only by the amount of available memory (The stack grows downward as needed).
+        The vector table is used to contain the three 2-byte addresses, a pointer to code to run when an interrupt request is received; a pointer to code that runs when the CPU is reset; a pointer to code which is run when a non-maskable interrupt is received. 
+
     c.	How does the ALU(s) connect to the registers for each processor (refer to the diagrams in part a)? 
 
         For the Intel 8080, there is a 8-bit internal data bus that connects the register array to the ALU. Data from registers must go through a 'temporary register' first before going into the ALU.
 
+        In the MOS 6502, processor takes care of deciding which two registers are being fed to the ALU. Then, all five operations are executed in parallel and the processor decides which buffer will get written to the output register by setting the control bits. In essence, the control bits which decide which operation is being executed on the inputs.
+
     d.	How are instructions fetched and executed for each processor? Is there an instruction cache? 
 
         For the 8080, when an assembly file is created, the first line must be the first address of program memory that the code is at. This line usually looks like 'org 1000h' -This tells the program counter to go that memory address.After this is done, the first instruction is loaded into an instruction register, from there, it goes to a instruction decoder which will help determine timing and control bits that come out of a 'timing and control' module. From there, the timing/control bits will execute the instruction appropriately and also increment the program counter.Then, on the next cycle, the program counter will be used to fetch the next instruction.
+
+        The MOS 6502 has 2 cycles to fetch the instruction bytes, 2 to fetch the two bytes of a pointer,1 cycle to to fetch the data byte the bytes are sent to a decoder to tell the 6502 what to do and from there the bits are used to execute the instuction as stated and change the PC
 
     e.	Do the processors pipeline instructions? 
 
         The Intel 8080 is nonpipelined.
         http://www.ee.hacettepe.edu.tr/~alkar/ELE336/w2-hacettepe[2016].pdf
 
+        The MOS 6502 was pipleined.
+
     f.	What clock speeds do the processors run at? 
 
         The intel 8080 runs at clock speed between 2 MHz to 3.125 MHz.
+
+        The MOS 6502 run a clock speed from 1MHz to 3MHz
 
 ## Section 2: Processor Language Design
 
