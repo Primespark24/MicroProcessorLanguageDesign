@@ -1,0 +1,44 @@
+OP-codes will be 5 bits, which means we get 32 total instructions
+
+
+addif - 00000
+add   - 00001
+sub   - 00010
+mul   - 00011
+div   - 00100
+mod   - 00101
+and   - 00110
+or    - 00111
+lw    - 01000
+sw    - 01001
+beq   - 01010
+bne   - 01011
+jump  - 01100
+
+
+Registers are 5 bits, which means we get 32 total registers
+Register numbers:
+
+$S0 = 00001 
+$S1 = 00010 
+$S2 = 00011 
+$S3 = 00100 
+$S4 = 00101 
+$S5 = 00110 
+$S6 = 00111 
+$S7 = 01000 
+
+$T0 = 01001 
+$T1 = 01010 
+$T2 = 01011 
+$T3 = 01100 
+$T4 = 01101 
+$T5 = 01110 
+$T6 = 01111 
+$T7 = 10000 
+
+$0 = 10001
+$f0 = 10010
+
+$SP = 10011
+$RA = 10100

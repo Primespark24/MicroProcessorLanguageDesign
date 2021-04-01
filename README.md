@@ -116,10 +116,16 @@ The reason we did this is because our processor will likely not have as many ope
         "dcx, b" will decrement the combined register BC, and its machine code is 00001011. Bits(0-2) are 3 which is the value of E, Bits(3-5) are 1 which is the value of C. Bits(6-7) are 00, which helps determine if the instruction is dcx
 
 
-        For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
-        ORA deos a bitwise or with the bits on the accumulator and another value
-        this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address,
-        011 for an absolute address etc.
+    For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
+    ORA deos a bitwise or with the bits on the accumulator and another value this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address 011 for an absolute address etc.
+    "ADC, x" is add with carry on x into the accumulator register
+    "CLV" clears the overflow flag 
+    "ORA, x" does an or between the accumulator and x which is a memory address
+    "TXA" transfer index x to accumulator
+
+
+
+https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
 
 
 4. Find a high level block diagram of each of your processors. Include these diagrams in this document. Compare and contrast the high level designs for *two* of the processors your group researched.  Here are questions that can help guide you in the comparison process. You may not be able to answer all the questions, but do your best for each of the two processors:
@@ -183,7 +189,7 @@ The reason we did this is because our processor will likely not have as many ope
    >>A diagram of the registers (and their purposes) for your custom processor  
    All Registers are 32 bits: When we use floating point we will use Vivado's 32 bit single precision format
    All registers will be storing
-    - $0 register (constant reg)
+    - (Maybe Remove) $0 register (constant reg)
     - $f0 (floating point 0)
     - Program counter (keeps track of current position in program)
     - temporaries (8 registers)
@@ -193,21 +199,35 @@ The reason we did this is because our processor will likely not have as many ope
 
 
    >>### TABLE 2B:
+    Machine Code Instruction Format: 64 bits: 
+    I/F-Type: |2 Bit instruction type| 5 bits op | 20 Extra | 5 RD | 32 Immediate/Float|
+    R-Type:   |2 Bit instruction type| 5 bits op| 27 bit extra| 5 RT | 5 RD | 5 RS |
+    J-Type:   |2 Bit instruction type| 5 bits op|  25 Extra |Offset from current line 32 bits| 
+
    >>A list of the instructions that you are going to build for your the processor.  
-    Math Instructions
-    - Add
+
+    Math Instructions (we are only implementing arithmetic operator for floating )
+    I-Type: 
+    - Addif (also immediate, but the immediate value is a float
+    - R-Type:
+    - Addf (add two registers)
     - Sub
     - Mul
     - Div
-    - Addi
     - Mod
     - 
+
     Basic Instruction
-    - Jump
+    R-Type: 
     - And 
     - Or
+    - lw
+    - sw
+
+    I-Type:
     - beq
     - bne 
+    - Jump
 
 ### Important Tips
 * Don’t start with too many instructions! Start with the basics (about 8 instructions) 
