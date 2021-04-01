@@ -25,13 +25,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //Program begin
-.main
-    PC 0 --Set program counter to first location in memory
-.data
+.data           //Program must start with .data, variables defined in data segment
     var memoryTest1 = 12 --Since there are 32 registers, the address of this should be 33
-.text
-    //Test I-type instructions
-    add, $S0, $0, 5     //Put non-floating pointt value of 5 into saved register 0
+.main           //Once variables are defined, instructions are written
+    //Test I-type and R-type instructions
+    add, $S0, $0, 5     //Put floating point value of 5 into saved register 0
     addif, $S1, 10.76   //Put floating point value of 10.76 into saved register 1
     addif, $S2, 7.76    //Put floating point value of 10.76 into saved register 2
     sub, $S3, $S2, $S1  //Put S2 - S1 into register S3
@@ -40,7 +38,7 @@
     mod, $S6, $S2, $S1  //Put S2 mod S1 into register S6
     addf, $S7, $S2, $S1 //Put S2 + S1 into S7 (Floating point addition)
 
-    //Test R-type instructions
+    //Test more R-type instructions
     add, $T0, $0, 5      //Put non floating point value of 5 into temp register 0
     add, $T1, $0, 6      //Put non floating point value of 6 into temp register 1
     and, $T3, $T0, $T1   //Put T0 AND T1 into T3
@@ -55,8 +53,8 @@
     add, $S0, $0, 5     //Should be skipped
     add, $S0, $0, 5     //Should be skipped
     add, $S0, $0, 5     //Should be skipped
-    label1:
-
+    label1: //When a label is defined, the next instruction should start at least on the next line
+    
     beq, $T0, 5, label2 //Should be taken
     add, $S0, $0, 5     //Should be skipped
     label2:
@@ -72,4 +70,5 @@
     bne, $T1, 6, label5 //Should be taken
     add, $S0, $0, 5     
     label5:
-.end
+.end    //Use .end to determine end of program. Set PC and all other signals to 0
+
