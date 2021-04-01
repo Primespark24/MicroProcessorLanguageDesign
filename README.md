@@ -133,7 +133,7 @@ https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
     a. Find a high level architecture diagram showing the data path for two of the processors. Insert both diagrams here:
     ![Alt text](/IMG/1920px-Intel_8080_arch.svg.png?raw=true "Title")
 
-    ![Alt text](/IMG/MOS_6592.png?raw=true "Title")
+    ![Alt text](/IMG/MOS_6502.png)
 
     b.	What are the different types of memory (register, cache, etc.) that each of these processors has built into the processor (our mips processor had 32 registers)? 
 
