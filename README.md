@@ -116,10 +116,16 @@ The reason we did this is because our processor will likely not have as many ope
         "dcx, b" will decrement the combined register BC, and its machine code is 00001011. Bits(0-2) are 3 which is the value of E, Bits(3-5) are 1 which is the value of C. Bits(6-7) are 00, which helps determine if the instruction is dcx
 
 
-        For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
-        ORA deos a bitwise or with the bits on the accumulator and another value
-        this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address,
-        011 for an absolute address etc.
+    For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
+    ORA deos a bitwise or with the bits on the accumulator and another value this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address 011 for an absolute address etc.
+    "ADC, x" is add with carry on x into the accumulator register
+    "CLV" clears the overflow flag 
+    "ORA, x" does an or between the accumulator and x which is a memory address
+    "TXA" transfer index x to accumulator
+
+
+
+https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
 
 
 4. Find a high level block diagram of each of your processors. Include these diagrams in this document. Compare and contrast the high level designs for *two* of the processors your group researched.  Here are questions that can help guide you in the comparison process. You may not be able to answer all the questions, but do your best for each of the two processors:
