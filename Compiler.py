@@ -1,4 +1,4 @@
-class IType:
+class FIType:
     def __init__(self, instruct_type, op_code, num_extra, R_D, i_val)):
         self.instruction_type = instruct_type
         self.opcode = op_code
@@ -22,11 +22,32 @@ class JType:
         self.num_extra_bits = num_extra
         self.jump_offset = offset 
 
+class MType:
+    def __init__(self, )
 
 
 
 def compile_into_machine(asm_file_name):
-    function_dict = {"add": }
+    # Memory Address for the start of variables (there are 32 registers)
+    variable_counter = 33
+
+    function_dict = {"add": "R", 
+                    "addfi": "FI",
+                    "sub": "R",
+                    "mul": "R",
+                    "div": "R",
+                    "mod": "R",
+                    "and": "R",
+                    "or": "R",
+                    "lw": "M",
+                    "sw": "M",
+                    "jump": "J",
+                    "beq": "J",
+                    "bne": "J"
+                     }
+
+    filelines =  open(asm_file_name, 'r').readlines()
+    
 
     # Search for line starting with .data
         # Initialize the registers
