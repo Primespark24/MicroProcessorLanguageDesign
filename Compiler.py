@@ -1,5 +1,5 @@
 class FIType:
-    def __init__(self, instruct_type, op_code, num_extra, R_D, i_val)):
+    def __init__(self, instruct_type, op_code, num_extra, R_D, i_val):
         self.instruction_type = instruct_type
         self.opcode = op_code
         self.num_extra_bits = num_extra
@@ -16,14 +16,20 @@ class RType:
         self.RS = R_S 
 
 class JType:
-    def __init__(self, instruct_type, op_code, num_extra, offset):
+    def __init__(self, instruct_type, op_code, R_D, i_val, offset):
         self.instruction_type = instruct_type
         self.opcode = op_code
-        self.num_extra_bits = num_extra
+        self.RD = R_D
+        self.immediate_val = i_val 
         self.jump_offset = offset 
 
 class MType:
-    def __init__(self, )
+    def __init__(self, instruct_type, op_code, num_extra, R_D, mem_loc):
+        self. instruction_type = instruct_type
+        self.opcode = op_code
+        self.num_extra_bits = num_extra
+        self.RD = R_D
+        self.memory_loc = mem_loc 
 
 
 
@@ -47,7 +53,27 @@ def compile_into_machine(asm_file_name):
                      }
 
     filelines =  open(asm_file_name, 'r').readlines()
+    # Locate data line
+    for line in filelines:
+        if(line.find(".data") != -1):
+            dataline = filelines.index(line)
+            break 
+
+    # Locate main line
+    for line in filelines:
+        if(line.find(".main") != -1):
+            mainline = filelines.index(line)
+            break
     
+    # Iterate thru all lines in the dataline
+    # If the line has var, store the variable
+    for index in range(dataline, mainline):
+        line = filelines[index]
+        if(line.find("var") != -1):
+            words = line.split()
+            # The syntax for storing a variable is: var {varname}= {value}
+            # Call sw to store the variable into the memory space
+            var_M = MType(3, 9, 45, )
 
     # Search for line starting with .data
         # Initialize the registers
@@ -79,5 +105,9 @@ def compile_into_machine(asm_file_name):
     # Iterate thru all lines
     with open(asm_file_name, 'r') as asm_file:
         for line in asm_file.readlines():
-            
+            pass            
 
+
+
+if __name__ == "__main__":
+    compile_into_machine("AssemblyCode.txt")

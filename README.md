@@ -67,6 +67,7 @@ The reason we did this is because our processor will likely not have as many ope
    
         The Intel 8080 is an extended/enhanced version of the Intel 8008 microprocessor. 
         The 8008's original purpose was to operate computer terminals, calculators, 1970s industrial robots, simple computers, etc.
+
         The MOS 6502 was designed to be a simplified, cheaper and faster MOS 6800. 
         It was 8-bit, and used in video game consoles (eg atari 2600) and computers as well.
    
@@ -116,12 +117,12 @@ The reason we did this is because our processor will likely not have as many ope
         "dcx, b" will decrement the combined register BC, and its machine code is 00001011. Bits(0-2) are 3 which is the value of E, Bits(3-5) are 1 which is the value of C. Bits(6-7) are 00, which helps determine if the instruction is dcx
 
 
-    For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
-    ORA deos a bitwise or with the bits on the accumulator and another value this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address 011 for an absolute address etc.
-    "ADC, x" is add with carry on x into the accumulator register
-    "CLV" clears the overflow flag 
-    "ORA, x" does an or between the accumulator and x which is a memory address
-    "TXA" transfer index x to accumulator
+        For the MOS 6502, the instructions are also 8-bits, they have the form aaabbbcc where a and c are opcodes and b defines the addressing mode 
+        ORA deos a bitwise or with the bits on the accumulator and another value this looks like 000bbb01 where bb is 010 for immidatde mode, 001 fro zero-page fixed address 011 for an absolute address etc.
+        "ADC, x" is add with carry on x into the accumulator register
+        "CLV" clears the overflow flag 
+        "ORA, x" does an or between the accumulator and x which is a memory address
+        "TXA" transfer index x to accumulator
 
 
 
@@ -187,24 +188,96 @@ https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
    
    >>### TABLE 2A:  
    >>A diagram of the registers (and their purposes) for your custom processor  
-   All Registers are 32 bits: When we use floating point we will use Vivado's 32 bit single precision format
-   All registers will be storing
-    - (Maybe Remove) $0 register (constant reg)
-    - $f0 (floating point 0)
-    - Program counter (keeps track of current position in program)
-    - temporaries (8 registers)
-    - saved values (8 saved)
-    - stack pointer (pointer to the bottom of the stack)
-    - return address (stores the address of the last executed instruction)
+
+    All Registers are 32 bits: When we use floating point we will use Vivado's 32 bit single precision format
+    
+    | NAME | NUMBER | USE   |
+    | :---:| :---:  | :---: |
+    | $S0  |   1    |  32 bit general purpose, saved between calls |
+    | $S1  |   2    |  32 bit general purpose, saved between calls |
+    | $S2  |   3    |  32 bit general purpose, saved between calls |
+    | $S3  |   4    |  32 bit general purpose, saved between calls |
+    | $S4  |   5    |  32 bit general purpose, saved between calls |
+    | $S5  |   6    |  32 bit general purpose, saved between calls |
+    | $S6  |   7    |  32 bit general purpose, saved between calls |
+    | $S7  |   8    |  32 bit general purpose, saved between calls |
+    | $T0  |   9    |  32 bit general purpose, saved between calls |
+    | $T1  |   10    |  32 bit general purpose, not saved between calls |
+    | $T2  |   11    |  32 bit general purpose, not saved between calls |
+    | $T3  |   12    |  32 bit general purpose, not saved between calls |
+    | $T4  |   13    |  32 bit general purpose, not saved between calls |
+    | $T5  |   14    |  32 bit general purpose, not saved between calls |
+    | $T6  |   15    |  32 bit general purpose, not saved between calls |
+    | $T7  |   16    |  32 bit general purpose, not saved between calls |
+    | $0   |   17    |  Constant value of 0, non floating point |
+    | $f0  |   18    |  Constant value of 0, floating point |
+    | $SP  |   19    |  Stack pointer |
+    | $RA  |   20    |  Return address|
+    | $M0  |   32    | 32 bit memory storage, saved between calls |
+    | $M1  |   33    | 32 bit memory storage, saved between calls |
+    | $M2  |   34    | 32 bit memory storage, saved between calls |
+    | $M3  |   35    | 32 bit memory storage, saved between calls |
+    | $M4  |   36    | 32 bit memory storage, saved between calls |
+    | $M5  |   37    | 32 bit memory storage, saved between calls |
+    | $M6  |   38    | 32 bit memory storage, saved between calls |
+    | $M7  |   39    | 32 bit memory storage, saved between calls |
+    | $M8  |   40    | 32 bit memory storage, saved between calls |
+    | $M9  |   41    | 32 bit memory storage, saved between calls |
+    | $M10  |   42    | 32 bit memory storage, saved between calls |
+    | $M11  |   43    | 32 bit memory storage, saved between calls |
+    | $M12  |   44    | 32 bit memory storage, saved between calls |
+    | $M13  |   45    | 32 bit memory storage, saved between calls |
+    | $M14  |   46    | 32 bit memory storage, saved between calls |
+    | $M15  |   47    | 32 bit memory storage, saved between calls |
+    | $M16  |   48    | 32 bit memory storage, saved between calls |
+    | $M17  |   49    | 32 bit memory storage, saved between calls |
+    | $M18  |   50    | 32 bit memory storage, saved between calls |
+    | $M19  |   51    | 32 bit memory storage, saved between calls |
+    | $M20  |   52    | 32 bit memory storage, saved between calls |
+    | $M21  |   53    | 32 bit memory storage, saved between calls |
+    | $M22  |   54    | 32 bit memory storage, saved between calls |
+    | $M23  |   55    | 32 bit memory storage, saved between calls |
+    | $M24  |   56    | 32 bit memory storage, saved between calls |
+    | $M25  |   57    | 32 bit memory storage, saved between calls |
+    | $M26  |   58    | 32 bit memory storage, saved between calls |
+    | $M27  |   59    | 32 bit memory storage, saved between calls |
+    | $M28  |   60    | 32 bit memory storage, saved between calls |
+    | $M29  |   61    | 32 bit memory storage, saved between calls |
+    | $M30  |   62    | 32 bit memory storage, saved between calls |
+    | $M31  |   63    | 32 bit memory storage, saved between calls |
 
 
    >>### TABLE 2B:
     Machine Code Instruction Format: 64 bits: 
-    I/F-Type: |2 Bit instruction type| 5 bits op | 19 Extra | 6 RD | 32 Immediate/Float|
-    R-Type:   |2 Bit instruction type| 5 bits op| 24 bit extra| 6 RT | 6 RD | 6 RS |
-    J-Type:   |2 Bit instruction type| 5 bits op| 6 RD | 32 Immediate/Float |Offset from current line 19 bits|
-    M-Type:   |2 Bit instruction type| 5 bits op| 45 bits Extra | 6 RD | 6 mem_loc |
+    
+    x means that the value depends on the values
 
+    0: I/F-Type: |2 Bit instruction type| 5 bits op | 19 Extra | 6 RD | 32 Immediate/Float|
+    | Instruction| Instruction_Type | Opcode | Extra | RD | Immediate|
+    |:==========:| :===============:|:======:|:=====:|:====:|:========:|
+    | Addfi      |    00            | 00000  |  19   |   x  |   x      |
+    
+    1: R-Type:   |2 Bit instruction type| 5 bits op| 24 bit extra| 6 RT | 6 RD | 6 RS |
+    | Instruction| Instruction_Type | Opcode | Extra | RT | RD | RS |
+    |:==========:| :===============:|:======:|:=====:|:==:|:==:|:==:|
+    | Add        |    01            | 00001  |  19   | x  | x  | x  |
+    | Sub        |    01            | 00010  |  19   | x  | x  | x  |
+    | Mul        |    01            | 00011  |  19   | x  | x  | x  |
+    | Div        |    01            | 00100  |  19   | x  | x  | x  |
+    | Mod        |    01            | 00101  |  19   | x  | x  | x  |
+    | And        |    01            | 00110  |  19   | x  | x  | x  |
+    | Or         |    01            | 00111  |  19   | x  | x  | x  |
+    
+    2: J-Type:   |2 Bit instruction type| 5 bits op| 6 RD | 32 Immediate/Float |Offset from current line 19 bits|
+    | Instruction| Instruction_Type | Opcode | RD    | Immediate | Jump Offset |
+    |:==========:| :===============:|:======:|:=====:|:====:     |:========:   |
+    | beq        |   10              |  01010 |  x    |   x       |  calculate  |
+    | bne        |   10              |  01011 |  x    |   x       |  calculate  |
+    | jump        |   10             |  01100 |  x    |   x       |  calculate  |
+    
+    3: M-Type:   |2 Bit instruction type| 5 bits op| 45 bits Extra | 6 RD | 6 mem_loc |
+    | lw         |    11                | 01000    |  45           | x    | x         |
+    | sw         |    11                | 01001    |  45           | x    | x         |
    >>A list of the instructions that you are going to build for your the processor.  
 
     Math Instructions (we are only implementing arithmetic operator for floating )
@@ -315,7 +388,71 @@ Include your assembly language code program here (make sure your program include
 
 ```asm
 
-   Put your assembly language program here
+// Single line comment
+/* 
+   Block comment 
+   Block comment
+*/
+
+//Registers have a preceding $
+//Each part of any instruction will be separated by a comma ','
+
+// Saved value registers are $S0 - $S7
+// Temporary value registers are $T0 - $T7
+// Stack pointer is $SP
+// Return address is $RA
+// Constant non-floating point 0 is $0
+// Constant floating point 0 is $f0
+
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//Program begin
+.data           //Program must start with .data, variables defined in data segment
+    var memoryTest1 = 12 --Since there are 32 registers, the address of this should be 33
+.main           //Once variables are defined, instructions are written
+    //Test I-type and R-type instructions
+    addfi, $S0, $0, 5     //Put floating point value of 5 into saved register 0
+    addfi, $S1, 10.76   //Put floating point value of 10.76 into saved register 1
+    addfi, $S2, 7.76    //Put floating point value of 10.76 into saved register 2
+    sub, $S3, $S2, $S1  //Put S2 - S1 into register S3
+    mul, $S4, $S2, $S1  //Put S2 * S1 into register S4
+    div, $S5, $S2, $S1  //Put S2 / S1 into register S5
+    mod, $S6, $S2, $S1  //Put S2 mod S1 into register S6
+    add, $S7, $S2, $S1 //Put S2 + S1 into S7 ( Register addition)
+
+    //Test more R-type instructions
+    addfi, $T0, $0, 5      //Put non floating point value of 5 into temp register 0
+    addfi, $T1, $0, 6      //Put non floating point value of 6 into temp register 1
+    and, $T3, $T0, $T1   //Put T0 AND T1 into T3
+    or, $T4, $T0, $T1    //Put T0 OR T1 into T4
+
+    //Test special instructions (Also I-type)
+    lw, $T5, 0x33 --Put value of 12 into temporary register 5
+    sw, $T0, 0x34 --Put value of 5 into memory location 0x34
+
+    jump, label1
+    addfi, $S0, $0, 5     //Should be skipped
+    addfi, $S0, $0, 5     //Should be skipped
+    addfi, $S0, $0, 5     //Should be skipped
+    addfi, $S0, $0, 5     //Should be skipped
+    label1: //When a label is defined, the next instruction should start at least on the next line
+    
+    beq, $T0, 5, label2 //Should be taken
+    addfi, $S0, $0, 5     //Should be skipped
+    label2:
+
+    bne, $T0, 6, label3 //Shouldnt be taken
+    addfi, $S0, $0, 5     
+    label3:
+
+    beq, $T1, 5, label4 //Shouldnt be taken
+    addfi, $S0, $0, 5     //Should be skipped
+    label4:
+
+    bne, $T1, 6, label5 //Should be taken
+    addfi, $S0, $0, 5     
+    label5:
+.end    //Use .end to determine end of program. Set PC and all other signals to 0
 
 ```
 
