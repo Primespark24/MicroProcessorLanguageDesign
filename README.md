@@ -191,60 +191,60 @@ https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
 
     All Registers are 32 bits: When we use floating point we will use Vivado's 32 bit single precision format
     
-    | NAME | NUMBER | USE   |
-    | :---:| :---:  | :---: |
-    | $S0  |   1    |  32 bit general purpose, saved between calls |
-    | $S1  |   2    |  32 bit general purpose, saved between calls |
-    | $S2  |   3    |  32 bit general purpose, saved between calls |
-    | $S3  |   4    |  32 bit general purpose, saved between calls |
-    | $S4  |   5    |  32 bit general purpose, saved between calls |
-    | $S5  |   6    |  32 bit general purpose, saved between calls |
-    | $S6  |   7    |  32 bit general purpose, saved between calls |
-    | $S7  |   8    |  32 bit general purpose, saved between calls |
-    | $T0  |   9    |  32 bit general purpose, saved between calls |
-    | $T1  |   10    |  32 bit general purpose, not saved between calls |
-    | $T2  |   11    |  32 bit general purpose, not saved between calls |
-    | $T3  |   12    |  32 bit general purpose, not saved between calls |
-    | $T4  |   13    |  32 bit general purpose, not saved between calls |
-    | $T5  |   14    |  32 bit general purpose, not saved between calls |
-    | $T6  |   15    |  32 bit general purpose, not saved between calls |
-    | $T7  |   16    |  32 bit general purpose, not saved between calls |
-    | $0   |   17    |  Constant value of 0, non floating point |
-    | $f0  |   18    |  Constant value of 0, floating point |
-    | $SP  |   19    |  Stack pointer |
-    | $RA  |   20    |  Return address|
-    | $M0  |   32    | 32 bit memory storage, saved between calls |
-    | $M1  |   33    | 32 bit memory storage, saved between calls |
-    | $M2  |   34    | 32 bit memory storage, saved between calls |
-    | $M3  |   35    | 32 bit memory storage, saved between calls |
-    | $M4  |   36    | 32 bit memory storage, saved between calls |
-    | $M5  |   37    | 32 bit memory storage, saved between calls |
-    | $M6  |   38    | 32 bit memory storage, saved between calls |
-    | $M7  |   39    | 32 bit memory storage, saved between calls |
-    | $M8  |   40    | 32 bit memory storage, saved between calls |
-    | $M9  |   41    | 32 bit memory storage, saved between calls |
-    | $M10  |   42    | 32 bit memory storage, saved between calls |
-    | $M11  |   43    | 32 bit memory storage, saved between calls |
-    | $M12  |   44    | 32 bit memory storage, saved between calls |
-    | $M13  |   45    | 32 bit memory storage, saved between calls |
-    | $M14  |   46    | 32 bit memory storage, saved between calls |
-    | $M15  |   47    | 32 bit memory storage, saved between calls |
-    | $M16  |   48    | 32 bit memory storage, saved between calls |
-    | $M17  |   49    | 32 bit memory storage, saved between calls |
-    | $M18  |   50    | 32 bit memory storage, saved between calls |
-    | $M19  |   51    | 32 bit memory storage, saved between calls |
-    | $M20  |   52    | 32 bit memory storage, saved between calls |
-    | $M21  |   53    | 32 bit memory storage, saved between calls |
-    | $M22  |   54    | 32 bit memory storage, saved between calls |
-    | $M23  |   55    | 32 bit memory storage, saved between calls |
-    | $M24  |   56    | 32 bit memory storage, saved between calls |
-    | $M25  |   57    | 32 bit memory storage, saved between calls |
-    | $M26  |   58    | 32 bit memory storage, saved between calls |
-    | $M27  |   59    | 32 bit memory storage, saved between calls |
-    | $M28  |   60    | 32 bit memory storage, saved between calls |
-    | $M29  |   61    | 32 bit memory storage, saved between calls |
-    | $M30  |   62    | 32 bit memory storage, saved between calls |
-    | $M31  |   63    | 32 bit memory storage, saved between calls |
+| NAME | NUMBER | USE   |
+| :---:| :---:  | :---: |
+| $S0  |   1    |  32 bit general purpose, saved between calls |
+| $S1  |   2    |  32 bit general purpose, saved between calls |
+| $S2  |   3    |  32 bit general purpose, saved between calls |
+| $S3  |   4    |  32 bit general purpose, saved between calls |
+| $S4  |   5    |  32 bit general purpose, saved between calls |
+| $S5  |   6    |  32 bit general purpose, saved between calls |
+| $S6  |   7    |  32 bit general purpose, saved between calls |
+| $S7  |   8    |  32 bit general purpose, saved between calls |
+| $T0  |   9    |  32 bit general purpose, saved between calls |
+| $T1  |   10    |  32 bit general purpose, not saved between calls |
+| $T2  |   11    |  32 bit general purpose, not saved between calls |
+| $T3  |   12    |  32 bit general purpose, not saved between calls |
+| $T4  |   13    |  32 bit general purpose, not saved between calls |
+| $T5  |   14    |  32 bit general purpose, not saved between calls |
+| $T6  |   15    |  32 bit general purpose, not saved between calls |
+| $T7  |   16    |  32 bit general purpose, not saved between calls |
+| $0   |   17    |  Constant value of 0, non floating point |
+| $f0  |   18    |  Constant value of 0, floating point |
+| $SP  |   19    |  Stack pointer |
+| $RA  |   20    |  Return address|
+| $M0  |   32    | 32 bit memory storage, saved between calls |
+| $M1  |   33    | 32 bit memory storage, saved between calls |
+| $M2  |   34    | 32 bit memory storage, saved between calls |
+| $M3  |   35    | 32 bit memory storage, saved between calls |
+| $M4  |   36    | 32 bit memory storage, saved between calls |
+| $M5  |   37    | 32 bit memory storage, saved between calls |
+| $M6  |   38    | 32 bit memory storage, saved between calls |
+| $M7  |   39    | 32 bit memory storage, saved between calls |
+| $M8  |   40    | 32 bit memory storage, saved between calls |
+| $M9  |   41    | 32 bit memory storage, saved between calls |
+| $M10  |   42    | 32 bit memory storage, saved between calls |
+| $M11  |   43    | 32 bit memory storage, saved between calls |
+| $M12  |   44    | 32 bit memory storage, saved between calls |
+| $M13  |   45    | 32 bit memory storage, saved between calls |
+| $M14  |   46    | 32 bit memory storage, saved between calls |
+| $M15  |   47    | 32 bit memory storage, saved between calls |
+| $M16  |   48    | 32 bit memory storage, saved between calls |
+| $M17  |   49    | 32 bit memory storage, saved between calls |
+| $M18  |   50    | 32 bit memory storage, saved between calls |
+| $M19  |   51    | 32 bit memory storage, saved between calls |
+| $M20  |   52    | 32 bit memory storage, saved between calls |
+| $M21  |   53    | 32 bit memory storage, saved between calls |
+| $M22  |   54    | 32 bit memory storage, saved between calls |
+| $M23  |   55    | 32 bit memory storage, saved between calls |
+| $M24  |   56    | 32 bit memory storage, saved between calls |
+| $M25  |   57    | 32 bit memory storage, saved between calls |
+| $M26  |   58    | 32 bit memory storage, saved between calls |
+| $M27  |   59    | 32 bit memory storage, saved between calls |
+| $M28  |   60    | 32 bit memory storage, saved between calls |
+| $M29  |   61    | 32 bit memory storage, saved between calls |
+| $M30  |   62    | 32 bit memory storage, saved between calls |
+| $M31  |   63    | 32 bit memory storage, saved between calls |
 
 
    >>### TABLE 2B:
