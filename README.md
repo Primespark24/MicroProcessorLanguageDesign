@@ -252,21 +252,21 @@ https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
     
     x means that the value depends on the values
 
-    0: I/F-Type: |2 Bit instruction type| 5 bits op | 19 Extra | 6 RD | 32 Immediate/Float|
-    | Instruction| Instruction_Type | Opcode | Extra | RD | Immediate|
-    |:==========:| :===============:|:======:|:=====:|:====:|:========:|
-    | Addfi      |    00            | 00000  |  19   |   x  |   x      |
+    0: F/I-Type: |2 Bit instruction type| 5 bits op | 13 Extra | 6 RS |6 RD | 32 Immediate/Float|
+    | Instruction| Instruction_Type | Opcode | Extra | RS  | RD | Immediate|
+    |:==========:| :===============:|:======:|:=====:|:===:|:====:|:========:|
+    | Addfi      |    00            | 00000  |  13   |  x  | x  |   x      |
     
     1: R-Type:   |2 Bit instruction type| 5 bits op| 24 bit extra| 6 RT | 6 RD | 6 RS |
     | Instruction| Instruction_Type | Opcode | Extra | RT | RD | RS |
     |:==========:| :===============:|:======:|:=====:|:==:|:==:|:==:|
-    | Add        |    01            | 00001  |  19   | x  | x  | x  |
-    | Sub        |    01            | 00010  |  19   | x  | x  | x  |
-    | Mul        |    01            | 00011  |  19   | x  | x  | x  |
-    | Div        |    01            | 00100  |  19   | x  | x  | x  |
-    | Mod        |    01            | 00101  |  19   | x  | x  | x  |
-    | And        |    01            | 00110  |  19   | x  | x  | x  |
-    | Or         |    01            | 00111  |  19   | x  | x  | x  |
+    | Add        |    01            | 00001  |  24   | x  | x  | x  |
+    | Sub        |    01            | 00010  |  24   | x  | x  | x  |
+    | Mul        |    01            | 00011  |  24   | x  | x  | x  |
+    | Div        |    01            | 00100  |  24   | x  | x  | x  |
+    | Mod        |    01            | 00101  |  24   | x  | x  | x  |
+    | And        |    01            | 00110  |  24   | x  | x  | x  |
+    | Or         |    01            | 00111  |  24   | x  | x  | x  |
     
     2: J-Type:   |2 Bit instruction type| 5 bits op| 6 RD | 32 Immediate/Float |Offset from current line 19 bits|
     | Instruction| Instruction_Type | Opcode | RD    | Immediate | Jump Offset |
@@ -278,6 +278,9 @@ https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
     3: M-Type:   |2 Bit instruction type| 5 bits op| 45 bits Extra | 6 RD | 6 mem_loc |
     | lw         |    11                | 01000    |  45           | x    | x         |
     | sw         |    11                | 01001    |  45           | x    | x         |
+    Lw and sw are only to be called in the assembly program when using a defined variable. It is not defined to be able to load from one register to another, or store from one register to another. For that purpose, use add. 
+
+
    >>A list of the instructions that you are going to build for your the processor.  
 
     Math Instructions (we are only implementing arithmetic operator for floating )

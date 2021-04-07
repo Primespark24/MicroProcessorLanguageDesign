@@ -1,7 +1,7 @@
 OP-codes will be 5 bits, which means we get 32 total instructions
 
 
-addif - 00000
+addfi - 00000
 add   - 00001
 sub   - 00010
 mul   - 00011
