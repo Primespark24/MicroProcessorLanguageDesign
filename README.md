@@ -247,38 +247,45 @@ https://www.masswerk.at/6502/6502_instruction_set.html#BEQ
 | $M31  |   63    | 32 bit memory storage, saved between calls |
 
 
-   >>### TABLE 2B:
-    Machine Code Instruction Format: 64 bits: 
-    
-    x means that the value depends on the values
+### TABLE 2B:
+Machine Code Instruction Format: 64 bits: 
 
-    0: F/I-Type: |2 Bit instruction type| 5 bits op | 13 Extra | 6 RS |6 RD | 32 Immediate/Float|
-    | Instruction| Instruction_Type | Opcode | Extra | RS  | RD | Immediate|
-    |:==========:| :===============:|:======:|:=====:|:===:|:====:|:========:|
-    | Addfi      |    00            | 00000  |  13   |  x  | x  |   x      |
-    
-    1: R-Type:   |2 Bit instruction type| 5 bits op| 24 bit extra| 6 RT | 6 RD | 6 RS |
-    | Instruction| Instruction_Type | Opcode | Extra | RT | RD | RS |
-    |:==========:| :===============:|:======:|:=====:|:==:|:==:|:==:|
-    | Add        |    01            | 00001  |  24   | x  | x  | x  |
-    | Sub        |    01            | 00010  |  24   | x  | x  | x  |
-    | Mul        |    01            | 00011  |  24   | x  | x  | x  |
-    | Div        |    01            | 00100  |  24   | x  | x  | x  |
-    | Mod        |    01            | 00101  |  24   | x  | x  | x  |
-    | And        |    01            | 00110  |  24   | x  | x  | x  |
-    | Or         |    01            | 00111  |  24   | x  | x  | x  |
-    
-    2: J-Type:   |2 Bit instruction type| 5 bits op| 6 RD | 32 Immediate/Float |Offset from current line 19 bits|
-    | Instruction| Instruction_Type | Opcode | RD    | Immediate | Jump Offset |
-    |:==========:| :===============:|:======:|:=====:|:====:     |:========:   |
-    | beq        |   10              |  01010 |  x    |   x       |  calculate  |
-    | bne        |   10              |  01011 |  x    |   x       |  calculate  |
-    | jump        |   10             |  01100 |  x    |   x       |  calculate  |
-    
-    3: M-Type:   |2 Bit instruction type| 5 bits op| 45 bits Extra | 6 RD | 6 mem_loc |
-    | lw         |    11                | 01000    |  45           | x    | x         |
-    | sw         |    11                | 01001    |  45           | x    | x         |
-    Lw and sw are only to be called in the assembly program when using a defined variable. It is not defined to be able to load from one register to another, or store from one register to another. For that purpose, use add. 
+x means that the value depends on the runtime
+
+0: F/I-Type: |2 Bit instruction type| 5 bits op | 13 Extra | 6 RS |6 RD | 32 Immediate/Float|
+
+| Instruction| Instruction_Type | Opcode | Extra | RS  | RD | Immediate|
+|:----:| :----:|:----:|:----:|:----:|:----:|:----:|
+| Addfi      |    00            | 00000  |  13   |  x  | x  |   x      |
+
+1: R-Type:   |2 Bit instruction type| 5 bits op| 39 bit extra| 6 RT | 6 RD | 6 RS |
+
+| Instruction| Instruction_Type | Opcode | Extra | RT | RD | RS |
+|:---:| :---:|:---:|:---:|:---:|:---:|:---:|
+| Sub        |    01            | 00010  |  39   | x  | x  | x  |
+| Add        |    01            | 00001  |  39   | x  | x  | x  |
+| Mul        |    01            | 00011  |  39   | x  | x  | x  |
+| Div        |    01            | 00100  |  39   | x  | x  | x  |
+| Mod        |    01            | 00101  |  39   | x  | x  | x  |
+| And        |    01            | 00110  |  39   | x  | x  | x  |
+| Or         |    01            | 00111  |  39   | x  | x  | x  |
+
+2: J-Type:   |2 Bit instruction type| 5 bits op| 6 RD | 32 Immediate/Float |Offset from current line 19 bits|
+| Instruction| Instruction_Type | Opcode | RD    | Immediate | Jump Offset |
+|:---:| :---:|:---:|:---:|:---:     |:---:   |
+| beq        |   10              |  01010 |  x    |   x       |  calculate  |
+| bne        |   10              |  01011 |  x    |   x       |  calculate  |
+| jump        |   10             |  01100 |  x    |   x       |  calculate  |
+
+3:  M-Type:   |2 Bit instruction type| 5 bits op| 45 bits Extra | 6 RD | 6 mem_loc |
+
+| Instruction | Instruction Type| Opcode | Extra | RD | Memory Location |
+| :---: | :---: | :---: | :---: | :---:| :---: |
+| lw         |    11                | 01000    |  45           | x    | x  |  x |
+| sw         |    11                | 01001    |  45           | x    | x   | x |
+
+Lw and sw are only to be called in the assembly program when using a defined variable. It is not defined to be able to load from one register to another, or store from one register to another. For that purpose, use add. 
+***
 
 
    >>A list of the instructions that you are going to build for your the processor.  
@@ -390,12 +397,15 @@ Use your assembler from Section 3 to compile the assembly language into hex base
 Include your assembly language code program here (make sure your program includes comments) 
 
 ```asm
+// Test assembly language file for Micro-Pirate-Processors
+// Computer architecture
+// FP1
+// 3/31/2021
+// Zachary Bowyer, Benjamin Greenwood, Niklas Roberts, Garrett O'Shaughnessy, Brycen Martin
 
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 // Single line comment
-/* 
-   Block comment 
-   Block comment
-*/
 
 //Registers have a preceding $
 //Each part of any instruction will be separated by a comma ','
@@ -411,12 +421,13 @@ Include your assembly language code program here (make sure your program include
 //////////////////////////////////////////////////////////////////////////////////
 //Program begin
 .data           //Program must start with .data, variables defined in data segment
+    // There MUST be spaces seperating declarations, 'memoryTest1=12' is invalid
     var memoryTest1 = 12 --Since there are 32 registers, the address of this should be 33
 .main           //Once variables are defined, instructions are written
     //Test I-type and R-type instructions
     addfi, $S0, $0, 5     //Put floating point value of 5 into saved register 0
-    addfi, $S1, 10.76   //Put floating point value of 10.76 into saved register 1
-    addfi, $S2, 7.76    //Put floating point value of 10.76 into saved register 2
+    addfi, $S1, $0, 10.76   //Put floating point value of 10.76 into saved register 1
+    addfi, $S2, $0, 7.76    //Put floating point value of 10.76 into saved register 2
     sub, $S3, $S2, $S1  //Put S2 - S1 into register S3
     mul, $S4, $S2, $S1  //Put S2 * S1 into register S4
     div, $S5, $S2, $S1  //Put S2 / S1 into register S5
@@ -430,33 +441,64 @@ Include your assembly language code program here (make sure your program include
     or, $T4, $T0, $T1    //Put T0 OR T1 into T4
 
     //Test special instructions (Also I-type)
-    lw, $T5, 0x33 --Put value of 12 into temporary register 5
-    sw, $T0, 0x34 --Put value of 5 into memory location 0x34
+    lw, $T5, memoryTest1 //Put value of 12 into temporary register 5
+    sw, $T0, memoryTest1 //Put value of 5 into our variable memoryTest1
 
     jump, label1
     addfi, $S0, $0, 5     //Should be skipped
     addfi, $S0, $0, 5     //Should be skipped
     addfi, $S0, $0, 5     //Should be skipped
     addfi, $S0, $0, 5     //Should be skipped
-    label1: //When a label is defined, the next instruction should start at least on the next line
-    
+    label label1: //When a label is defined, the next instruction should start at exactly the next line
     beq, $T0, 5, label2 //Should be taken
     addfi, $S0, $0, 5     //Should be skipped
-    label2:
 
+    label label2:
     bne, $T0, 6, label3 //Shouldnt be taken
     addfi, $S0, $0, 5     
-    label3:
+    label label3:
 
     beq, $T1, 5, label4 //Shouldnt be taken
     addfi, $S0, $0, 5     //Should be skipped
-    label4:
+    label label4:
 
     bne, $T1, 6, label5 //Should be taken
     addfi, $S0, $0, 5     
-    label5:
+    label label5:
 .end    //Use .end to determine end of program. Set PC and all other signals to 0
+```
 
+### Compiled Binary and Hex values
+```
+0000000000000000000000100101000101000001010000000000000000000000 : 0000025141400000
+1101001000000000000000000000000000000000000000000000001001100000 : d200000000000260
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+0000000000000000000000001001000101000001001011000010100011110110 : 00000091412c28f6
+0000000000000000000000001101000101000000111110000101000111101100 : 000000d140f851ec
+0100010000000000000000000000000000000000000000000100000011000010 : 44000000000040c2
+0100011000000000000000000000000000000000000000000101000011000010 : 46000000000050c2
+0100100000000000000000000000000000000000000000000110000011000010 : 48000000000060c2
+0100101000000000000000000000000000000000000000000111000011000010 : 4a000000000070c2
+0100001000000000000000000000000000000000000000001000000011000010 : 42000000000080c2
+0000000000000000000000100101000101000000101000000000000000000000 : 0000025140a00000
+0000000000000000000000101001000101000000110000000000000000000000 : 0000029140c00000
+0100110000000000000000000000000000000000000000001100001001001010 : 4c0000000000c24a
+0100111000000000000000000000000000000000000000001101001001001010 : 4e0000000000d24a
+1101000000000000000000000000000000000000000000000000001110100000 : d0000000000003a0
+1101001000000000000000000000000000000000000000000000001001100000 : d200000000000260
+1001100000000000000000000000000000000000000000000000000000010011 : 9800000000000013
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+1001010001001010000001010000000000000000000000000000000000010101 : 944a050000000015
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+1001011001001010000001100000000000000000000000000000000000010111 : 964a060000000017
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+1001010001010010000001010000000000000000000000000000000000011001 : 9452050000000019
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
+1001011001010010000001100000000000000000000000000000000000011011 : 965206000000001b
+0000000000000000000000000101000101000000101000000000000000000000 : 0000005140a00000
 ```
 
 
